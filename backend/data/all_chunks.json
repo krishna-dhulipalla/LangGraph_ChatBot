@@ -1,0 +1,412 @@
+[
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\nI’m a **Machine Learning Engineer** with over **3 years of experience** designing and deploying intelligent AI systems, integrating backend infrastructure, and building real-time data workflows. I specialize in **LLM-powered agents**, **semantic search**, **bioinformatics AI models**, and **cloud-native ML infrastructure**.\n\nI earned my **M.S. in Computer Science** from **Virginia Tech** in December 2024 with a 3.95/4.0 GPA, focusing on large language models, intelligent agents, and scalable data systems. My work spans the full ML lifecycle—from research and fine-tuning transformer architectures to deploying production-ready applications on AWS and GCP.\n\nI’m passionate about **LLM-driven systems**, **multi-agent orchestration**, and **domain-adaptive ML**, particularly in **genomic data analysis** and **real-time analytics**.\n\n---",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#0_c786e01b",
+      "has_header": true,
+      "word_count": 113
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 🎯 Career Summary\n\n- 👨‍💻 3+ years of experience in **ML systems design**, **LLM-powered applications**, and **data engineering**\n- 🧬 Proven expertise in **transformer fine-tuning** (LoRA, soft prompting) for genomic classification\n- 🤖 Skilled in **LangChain**, **LangGraph**, **AutoGen**, and **CrewAI** for intelligent agent workflows\n- ☁️ Deep knowledge of **AWS** (S3, Glue, Lambda, SageMaker, ECS, CloudWatch) and **GCP** (BigQuery, Dataflow, Composer)\n- ⚡ Experienced in **real-time data pipelines** using **Apache Kafka**, **Spark**, **Airflow**, and **dbt**\n- 📊 Strong foundation in **synthetic data generation**, **domain adaptation**, and **cross-domain NER**",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#1_0ba34e9a",
+      "has_header": true,
+      "word_count": 90
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 🔭 Areas of Current Focus\n\n- Developing **LLM-powered mobile automation agents** for UI task execution\n- Architecting **retrieval-augmented generation (RAG)** systems with hybrid retrieval and cross-encoder reranking\n- Fine-tuning **DNA foundation models** like DNABERT & HyenaDNA for plant genomics\n- Building **real-time analytics pipelines** integrating Kafka, Spark, Airflow, and cloud services\n\n---\n\n# # 🎓 Education\n\n## # Virginia Tech — M.S. in Computer Science\n\n📍 Blacksburg, VA | Jan 2023 – Dec 2024  \n**GPA:** 3.95 / 4.0  \nRelevant Coursework: Distributed Systems, Machine Learning Optimization, Genomics, LLMs & Transformer Architectures\n\n## # Anna University — B.Tech in Computer Science and Engineering\n\n📍 Chennai, India | Jun 2018 – May 2022  \n**GPA:** 8.24 / 10  \nSpecialization: Real-Time Analytics, Cloud Systems, Software Engineering Principles\n\n---",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#2_5b08eda4",
+      "has_header": true,
+      "word_count": 125
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 🛠️ Technical Skills\n\n**Programming:** Python, R, SQL, JavaScript, TypeScript, Node.js, FastAPI, MongoDB  \n**ML Frameworks:** PyTorch, TensorFlow, scikit-learn, Hugging Face Transformers  \n**LLM & Agents:** LangChain, LangGraph, AutoGen, CrewAI, Prompt Engineering, RAG, LoRA, GANs  \n**ML Techniques:** Self-Supervised Learning, Cross-Domain Adaptation, Hyperparameter Optimization, A/B Testing  \n**Data Engineering:** Apache Spark, Kafka, dbt, Airflow, ETL Pipelines, Delta Lake, Snowflake  \n**Cloud & Infra:** AWS (S3, Glue, Lambda, Redshift, ECS, SageMaker, CloudWatch), GCP (GCS, BigQuery, Dataflow, Composer)  \n**DevOps/MLOps:** Docker, Kubernetes, MLflow, CI/CD, Weights & Biases  \n**Visualization:** Tableau, Shiny (R), Plotly, Matplotlib  \n**Other Tools:** Pandas, NumPy, Git, LangSmith, LangFlow, Linux\n\n---",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#3_2035a7b6",
+      "has_header": true,
+      "word_count": 95
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 💼 Professional Experience\n\n## # Cloud Systems LLC — ML Research Engineer (Current role)\n\n📍 Remote | Jul 2024 – Present\n\n- Designed and optimized **SQL-based data retrieval** and **batch + real-time pipelines**\n- Built automated **ETL workflows** integrating multiple data sources\n\n## # Virginia Tech — ML Research Engineer\n\n📍 Blacksburg, VA | Sep 2024 – Jul 2024\n\n- Developed **DNA sequence classification pipelines** using DNABERT & HyenaDNA with LoRA & soft prompting (94%+ accuracy)\n- Automated preprocessing of **1M+ genomic sequences** with Biopython & Airflow, reducing runtime by 40%\n- Built **LangChain-based semantic search** for genomics literature\n- Deployed fine-tuned LLMs using Docker, MLflow, and optionally SageMaker",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#4_6b27454e",
+      "has_header": true,
+      "word_count": 111
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n## # Virginia Tech — Research Assistant\n\n📍 Blacksburg, VA | Jun 2023 – May 2024\n\n- Built **genomic ETL pipelines** (Airflow + AWS Glue) improving research data availability by 50%\n- Automated retraining workflows via CI/CD, reducing manual workload by 40%\n- Benchmarked compute cluster performance to cut runtime costs by 15%\n\n## # UJR Technologies Pvt Ltd — Data Engineer\n\n📍 Hyderabad, India | Jul 2021 – Dec 2022\n\n- Migrated **batch ETL to real-time streaming** with Kafka & Spark (↓ latency 30%)\n- Deployed Dockerized microservices to AWS ECS, improving deployment speed by 25%\n- Optimized Snowflake schemas to improve query performance by 40%\n\n---",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#5_0002cd5a",
+      "has_header": true,
+      "word_count": 108
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 📊 Highlight Projects\n\n- **LLM-Based Android Agent** – Multi-step UI automation with memory, self-reflection, and context recovery (80%+ accuracy)\n\n## # Real-Time IoT-Based Temperature Forecasting\n\n- Kafka-based pipeline for 10K+ sensor readings with LLaMA 2-based time series model (91% accuracy)\n- Airflow + Looker dashboards (↓ manual reporting by 30%)\n- S3 lifecycle policies saved 40% storage cost with versioned backups  \n  🔗 [GitHub](https://github.com/krishna-creator/Real-Time-IoT-Based-Temperature-Analytics-and-Forecasting)\n\n## # Proxy TuNER: Cross-Domain NER\n\n- Developed a proxy tuning method for domain-agnostic BERT\n- 15% generalization gain using gradient reversal + feature alignment\n- 70% cost reduction via logit-level ensembling  \n  🔗 [GitHub](https://github.com/krishna-creator/ProxytuNER)",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#6_48d0bbf0",
+      "has_header": true,
+      "word_count": 99
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n## # IntelliMeet: AI-Powered Conferencing\n\n- Federated learning, end-to-end encrypted platform\n- Live attention detection using RetinaFace (<200ms latency)\n- Summarization with Transformer-based speech-to-text  \n  🔗 [GitHub](https://github.com/krishna-creator/SE-Project---IntelliMeet)\n\n## # Automated Drone Image Analysis\n\n- Real-time crop disease detection using drone imagery\n- Used OpenCV, RAG, and GANs for synthetic data generation\n- Improved detection accuracy by 15% and reduced processing latency by 70%\n\n---",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#7_65108870",
+      "has_header": true,
+      "word_count": 63
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 📜 Certifications\n\n- 🏆 NVIDIA – Building RAG Agents with LLMs\n- 🏆 Google Cloud – Data Engineering Foundations\n- 🏆 AWS – Machine Learning Specialty\n- 🏆 Microsoft – MERN Stack Development\n- 🏆 Snowflake – End-to-End Data Engineering\n- 🏆 Coursera – Machine Learning Specialization  \n  🔗 [View All Credentials](https://www.linkedin.com/in/krishnavamsidhulipalla/)\n\n---\n\n# # 📚 Research Publications\n\n- **IEEE BIBM 2024** – “Leveraging ML for Predicting Circadian Transcription in mRNAs and lncRNAs”  \n  [DOI: 10.1109/BIBM62325.2024.10822684](https://doi.org/10.1109/BIBM62325.2024.10822684)\n\n- **MLCB** – “Harnessing DNA Foundation Models for TF Binding Prediction in Plants”\n\n---",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#8_86fd643f",
+      "has_header": true,
+      "word_count": 90
+    }
+  },
+  {
+    "text": "[HEADER] # 👋 Hello, I'm Krishna Vamsi Dhulipalla\n\n# # 🔗 External Links / Contact details\n\n- 🌐 [Personal Portfolio/ personal website](http://krishna-dhulipalla.github.io)\n- 🧪 [GitHub](https://github.com/Krishna-dhulipalla)\n- 💼 [LinkedIn](https://www.linkedin.com/in/krishnavamsidhulipalla)\n- 📬 dhulipallakrishnavamsi@gmail.com\n- 🤖 [Personal Chatbot](https://huggingface.co/spaces/krishnadhulipalla/Personal_ChatBot)",
+    "metadata": {
+      "source": "aprofile.md",
+      "header": "# 👋 Hello, I'm Krishna Vamsi Dhulipalla",
+      "chunk_id": "aprofile.md_#9_cf15266e",
+      "has_header": true,
+      "word_count": 27
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\nThis document outlines the technical architecture and modular design of Krishna Vamsi Dhulipalla’s personal AI chatbot system, implemented using **LangChain**, **OpenAI**, **NVIDIA NIMs**, and **Gradio**. The assistant is built for intelligent, retriever-augmented, memory-aware interaction tailored to Krishna’s background and user context.\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#0_26c9c16b",
+      "has_header": true,
+      "word_count": 55
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n| Purpose                             | Model Name                               | Role Description                                                 |\n| ----------------------------------- | ---------------------------------------- | ---------------------------------------------------------------- |\n| **Rephraser LLM**                   | `microsoft/phi-3-mini-4k-instruct`       | Rewrites vague/short queries into detailed, keyword-rich queries |\n| **Relevance Classifier + Reranker** | `mistralai/mixtral-8x22b-instruct-v0.1`  | Classifies query relevance to KB and reranks retrieved chunks    |\n| **Answer Generator**                | `nvidia/llama-3.1-nemotron-70b-instruct` | Provides rich, structured answers (replacing GPT-4o for testing) |\n| **Fallback Humor Model**            | `mistralai/mixtral-8x22b-instruct-v0.1`  | Responds humorously and redirects when out-of-scope              |",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#3_07e89ce2",
+      "has_header": false,
+      "word_count": 77
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n| **Fallback Humor Model**            | `mistralai/mixtral-8x22b-instruct-v0.1`  | Responds humorously and redirects when out-of-scope              |\n| **KnowledgeBase Updater**           | `mistralai/mistral-7b-instruct-v0.3`     | Extracts and updates structured memory about the user            |",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#4_c44438ef",
+      "has_header": false,
+      "word_count": 29
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\nAll models are integrated via **LangChain RunnableChains**, supporting both streaming and structured execution.\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#5_ba043e37",
+      "has_header": false,
+      "word_count": 14
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🔍 Retrieval Architecture\n\n## # ✅ **Hybrid Retrieval System**\n\nThe assistant combines:\n\n- **BM25Retriever**: Lexical keyword match\n- **FAISS Vector Search**: Dense embeddings from `sentence-transformers/all-MiniLM-L6-v2`\n\n## # 🧠 Rephrasing for Retrieval\n\n- The **user's query** is expanded using the Rephraser LLM, with awareness of `last_followups` and memory\n- **Rewritten query** is used throughout retrieval, validation, and reranking\n\n## # 📊 Scoring & Ranking\n\n- Each subquery is run through both BM25 and FAISS\n- Results are merged via weighted formula:  \n  `final_score = α * vector_score + (1 - α) * bm25_score`\n- Deduplication via fingerprinting\n- Top-k (default: 15) results are passed forward\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#6_345d4daa",
+      "has_header": true,
+      "word_count": 106
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🔎 Validation + Chunk Reranking\n\n## # 🔍 Relevance Classification\n\n- LLM2 evaluates:\n  - Whether the query (or rewritten query) is **in-scope**\n  - If so, returns a **reranked list of chunk indices**\n- Memory (`last_input`, `last_output`, `last_followups`) and `rewritten_query` are included for better context\n\n## # ❌ If Out-of-Scope\n\n- Chunks are discarded\n- Response is generated using fallback LLM with humor and redirection\n\n---\n\n# # 🧠 Memory + Personalization\n\n## # 📘 KnowledgeBase Model\n\nTracks structured user data:\n\n- `user_name`, `company`, `last_input`, `last_output`\n- `summary_history`, `recent_interests`, `last_followups`, `tone`\n\n## # 🔄 Memory Updates\n\n- After every response, assistant extracts and updates memory\n- Handled via `RExtract` pipeline using `PydanticOutputParser` and KB LLM\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#7_9aedb3ef",
+      "has_header": true,
+      "word_count": 117
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🧭 Orchestration Flow\n\n```text\nUser Input\n   ↓\nRephraser LLM (phi-3-mini)\n   ↓\nHybrid Retrieval (BM25 + FAISS)\n   ↓\nValidation + Reranking (mixtral-8x22b)\n   ↓\n ┌──────────────┐     ┌────────────────────┐\n │ In-Scope     │     │ Out-of-Scope Query │\n │ (Top-k Chunks)│     │ (Memory-based only)│\n └────┬─────────┘     └─────────────┬──────┘\n      ↓                                  ↓\n Answer LLM (nemotron-70b)       Fallback Humor LLM\n```\n\n---\n\n# # 💬 Frontend Interface (Gradio)\n\n- Built using **Gradio ChatInterface + Blocks**\n- Features:\n  - Responsive design\n  - Custom CSS\n  - Streaming markdown responses\n  - Preloaded examples and auto-scroll\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#8_9eb3379f",
+      "has_header": true,
+      "word_count": 82
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 💬 Frontend Interface (Gradio)\n\n- Built using **Gradio ChatInterface + Blocks**\n- Features:\n  - Responsive design\n  - Custom CSS\n  - Streaming markdown responses\n  - Preloaded examples and auto-scroll\n\n---\n\n# # 🧩 Additional Design Highlights\n\n- **Streaming**: Nemotron-70B used via LangChain streaming\n- **Prompt Engineering**: Answer prompts use markdown formatting, section headers, bullet points, and personalized sign-offs\n- **Memory-Aware Rewriting**: Handles vague replies like `\"yes\"` or `\"A\"` by mapping them to `last_followups`\n- **Knowledge Chunk Enrichment**: Each FAISS chunk includes synthetic summary and 3 QA-style synthetic queries\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#9_57d88724",
+      "has_header": true,
+      "word_count": 90
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🚀 Future Enhancements\n\n- Tool calling for tasks like calendar access or Google search\n- Multi-model reranking agents\n- Memory summarization agents for long dialogs\n- Topic planners to group conversations\n- Retrieval filtering based on user interest and session\n\n---\n\nThis architecture is modular, extensible, and designed to simulate a memory-grounded, expert-aware personal assistant tailored to Krishna’s evolving knowledge and conversational goals.\n\n# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (LangGraph Version) (New and current one)\n\nThis document details the updated architecture of **Krishna Vamsi Dhulipalla’s** personal AI assistant, now fully implemented with **LangGraph** for orchestrated state management and tool execution. The system is designed for **retrieval-augmented, memory-grounded, and multi-turn conversational intelligence**, integrating **OpenAI GPT-4o**, **Hugging Face embeddings**, and **cross-encoder reranking**.\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#10_480e8b80",
+      "has_header": true,
+      "word_count": 126
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🧱 Core Components\n\n## # 1. **Models & Their Roles**\n\n| Purpose                    | Model Name                               | Role Description                                 |\n| -------------------------- | ---------------------------------------- | ------------------------------------------------ |\n| **Main Chat Model**        | `gpt-4o`                                 | Handles conversation, tool calls, and reasoning  |\n| **Retriever Embeddings**   | `sentence-transformers/all-MiniLM-L6-v2` | Embedding generation for FAISS vector search     |\n| **Cross-Encoder Reranker** | `cross-encoder/ms-marco-MiniLM-L-6-v2`   | Reranks retrieval results for semantic relevance |\n| **BM25 Retriever**         | (LangChain BM25Retriever)                | Keyword-based search complementing vector search |\n\nAll models are bound to LangGraph **StateGraph** nodes for structured execution.\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#11_eb402d95",
+      "has_header": true,
+      "word_count": 93
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🔍 Retrieval System\n\n## # ✅ **Hybrid Retrieval**\n\n- **FAISS Vector Search** with normalized embeddings\n- **BM25Retriever** for lexical keyword matching\n- Combined using **Reciprocal Rank Fusion (RRF)**\n\n## # 📊 **Reranking & Diversity**\n\n1. Initial retrieval with FAISS & BM25 (top-K per retriever)\n2. Fusion via RRF scoring\n3. **Cross-Encoder reranking** (top-N candidates)\n4. **Maximal Marginal Relevance (MMR)** selection for diversity\n\n## # 🔎 Retriever Tool (`@tool retriever`)\n\n- Returns top passages with minimal duplication\n- Used in-system prompt to fetch accurate facts about Krishna\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#12_cab54fdc",
+      "has_header": true,
+      "word_count": 89
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🧠 Memory System\n\n## # Long-Term Memory\n\n- **FAISS-based memory vector store** stored at `backend/data/memory_faiss`\n- Stores conversation summaries per thread ID\n\n## # Memory Search Tool (`@tool memory_search`)\n\n- Retrieves relevant conversation snippets by semantic similarity\n- Supports **thread-scoped** search for contextual continuity\n\n## # Memory Write Node\n\n- After each AI response, stores `[Q]: ... [A]: ...` summary\n- Autosaves after every `MEM_AUTOSAVE_EVERY` turns or on thread end\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#13_b0899bfc",
+      "has_header": true,
+      "word_count": 73
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🧭 Orchestration Flow (LangGraph)\n\n```mermaid\ngraph TD\n    A[START] --> B[agent node]\n    B -->|tool call| C[tools node]\n    B -->|no tool| D[memory_write]\n    C --> B\n    D --> E[END]\n```\n\n## # **Nodes**:\n\n- **agent**: Calls main LLM with conversation window + system prompt\n- **tools**: Executes retriever or memory search tools\n- **memory_write**: Persists summaries to long-term memory\n\n## # **Conditional Edges**:\n\n- From **agent** → `tools` if tool call detected\n- From **agent** → `memory_write` if no tool call\n\n---\n\n# # 💬 System Prompt\n\nThe assistant:\n\n- Uses retriever and memory search tools to gather facts about Krishna\n- Avoids fabrication and requests clarification when needed\n- Responds humorously when off-topic but steers back to Krishna’s expertise\n- Formats with Markdown, headings, and bullet points\n\nEmbedded **Krishna’s Bio** provides static grounding context.\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#14_c58f0c4c",
+      "has_header": true,
+      "word_count": 135
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🌐 API & Streaming\n\n- **Backend**: FastAPI (`backend/api.py`)\n  - `/chat` SSE endpoint streams tokens in real-time\n  - Passes `thread_id` & `is_final` to LangGraph for stateful conversations\n- **Frontend**: React + Tailwind (custom chat UI)\n  - Threaded conversation storage in browser `localStorage`\n  - Real-time token rendering via `EventSource`\n  - Features: new chat, clear chat, delete thread, suggestions\n\n---\n\n# # 🖥️ Frontend Highlights\n\n- Dark theme ChatGPT-style UI\n- Sidebar for thread management\n- Live streaming responses with Markdown rendering\n- Suggestion prompts for quick interactions\n- Message actions: copy, edit, regenerate\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#15_07f432c1",
+      "has_header": true,
+      "word_count": 94
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🖥️ Frontend Highlights\n\n- Dark theme ChatGPT-style UI\n- Sidebar for thread management\n- Live streaming responses with Markdown rendering\n- Suggestion prompts for quick interactions\n- Message actions: copy, edit, regenerate\n\n---\n\n# # 🧩 Design Improvements Over Previous Version\n\n- **LangGraph StateGraph** ensures explicit control of message flow\n- **Thread-scoped memory** enables multi-session personalization\n- **Hybrid RRF + Cross-Encoder + MMR** retrieval pipeline improves relevance & diversity\n- **SSE streaming** for low-latency feedback\n- Decoupled **retrieval** and **memory** as separate tools for modularity\n\n---",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#16_0247e9ee",
+      "has_header": true,
+      "word_count": 88
+    }
+  },
+  {
+    "text": "[HEADER] # 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)\n\n# # 🚀 Future Enhancements\n\n- Integrate **tool calling** for external APIs (calendar, search)\n- Summarization agents for condensing memory store\n- Interest-based retrieval filtering\n- Multi-agent orchestration for complex tasks\n\n---\n\nThis LangGraph-powered architecture delivers a **stateful, retrieval-augmented, memory-aware personal assistant** optimized for Krishna’s profile and designed for **extensibility, performance, and precision**.",
+    "metadata": {
+      "source": "Chatbot_Architecture_Notes.md",
+      "header": "# 🤖 Chatbot Architecture Overview: Krishna's Personal AI Assistant (old and intial one)",
+      "chunk_id": "Chatbot_Architecture_Notes.md_#17_328ca9e7",
+      "has_header": true,
+      "word_count": 53
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# 🌟 Personal and Professional Goals\n\n# # ✅ Short-Term Goals (0–6 months)\n\n1. **Deploy Multi-Agent Personal Chatbot**\n\n   - Integrate RAG-based retrieval, tool calling, and Open Source LLMs\n   - Use LangChain, FAISS, BM25, and Gradio UI\n\n2. **Publish Second Bioinformatics Paper**\n\n   - Focus: TF Binding prediction using HyenaDNA and plant genomics data\n   - Venue: Submitted to MLCB\n\n3. **Transition Toward Production Roles**\n\n   - Shift from academic research to applied roles in data engineering or ML infrastructure\n   - Focus on backend, pipeline, and deployment readiness\n\n4. **Accelerate Job Search**\n\n   - Apply to 3+ targeted roles per week (platform/data engineering preferred)\n   - Tailor applications for visa-friendly, high-impact companies\n\n5. **R Shiny App Enhancement**\n\n   - Debug gene co-expression heatmap issues and add new annotation features\n\n6. **Learning & Certifications**\n   - Deepen knowledge in Kubernetes for ML Ops\n   - Follow NVIDIA’s RAG Agent curriculum weekly\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#0_337b6890",
+      "has_header": true,
+      "word_count": 142
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # ⏳ Mid-Term Goals (6–12 months)\n\n1. **Launch Open-Source Project**\n\n   - Create or contribute to ML/data tools (e.g., genomic toolkit, chatbot agent framework)\n\n2. **Scale Personal Bot Capabilities**\n\n   - Add calendar integration, document-based Q&A, semantic memory\n\n3. **Advance CI/CD and Observability Skills**\n\n   - Implement cloud-native monitoring and testing workflows\n\n4. **Secure Full-Time Role**\n   - Land a production-facing role with a U.S. company offering sponsorship support\n\n---\n\n# # 🚀 Long-Term Goals (1–3 years)\n\n1. **Become a Senior Data/ML Infrastructure Engineer**\n\n   - Work on LLM orchestration, agent systems, scalable infrastructure\n\n2. **Continue Academic Contributions**\n\n   - Publish in bioinformatics and AI (focus: genomics + transformers)\n\n3. **Launch a Research-Centered Product/Framework**\n   - Build an open-source or startup framework connecting genomics, LLMs, and real-time ML pipelines\n\n---\n\n# 💬 Example Conversations",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#1_bc53463d",
+      "has_header": true,
+      "word_count": 128
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# 💬 Example Conversations\n\n# # Q: _What interests you in data engineering?_\n\n**A:** I enjoy architecting scalable data systems that generate real-world insights. From optimizing ETL pipelines to deploying real-time frameworks like the genomic systems at Virginia Tech, I thrive at the intersection of automation and impact.\n\n---\n\n# # Q: _Describe a pipeline you've built._\n\n**A:** One example is a real-time IoT pipeline I built at VT. It processed 10,000+ sensor readings using Kafka, Airflow, and Snowflake, feeding into GPT-4 for forecasting with 91% accuracy. This reduced energy costs by 15% and improved dashboard reporting by 30%.\n\n---\n\n# # Q: _What was your most difficult debugging experience?_\n\n**A:** Debugging duplicate ingestion in a Kafka/Spark pipeline at UJR. I isolated misconfigurations in consumer groups, optimized Spark executors, and applied idempotent logic to reduce latency by 30%.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#2_05b5827c",
+      "has_header": true,
+      "word_count": 139
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # Q: _How do you handle data cleaning?_\n\n**A:** I ensure schema consistency, identify missing values and outliers, and use Airflow + dbt for scalable automation. For larger datasets, I optimize transformations using batch jobs or parallel compute.\n\n---\n\n# # Q: _Describe a strong collaboration experience._\n\n**A:** While working on cross-domain NER at Virginia Tech, I collaborated with infrastructure engineers on EC2 deployment while handling model tuning. Together, we reduced latency by 30% and improved F1-scores by 8%.\n\n---\n\n# # Q: _What tools do you use most often?_\n\n**A:** Python, Spark, Airflow, dbt, Kafka, and SageMaker are daily drivers. I also rely on Docker, CloudWatch, and Looker for observability and visualizations.\n\n---\n\n# # Q: _What’s a strength and weakness of yours?_\n\n**A:**\n\n- **Strength**: Turning complexity into clean, usable data flows.\n- **Weakness**: Over-polishing outputs, though I’m learning to better balance speed with quality.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#3_e7c4a2f9",
+      "has_header": true,
+      "word_count": 149
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # Q: _What’s a strength and weakness of yours?_\n\n**A:**\n\n- **Strength**: Turning complexity into clean, usable data flows.\n- **Weakness**: Over-polishing outputs, though I’m learning to better balance speed with quality.\n\n---\n\n# # Q: _What do you want to work on next?_\n\n**A:** I want to deepen my skills in production ML workflows—especially building intelligent agents and scalable pipelines that serve live products and cross-functional teams.\n\n# # How did you automate preprocessing for 1M+ biological samples?\n\nA: Sure! The goal was to streamline raw sequence processing at scale, so I used Biopython for parsing genomic formats and dbt to standardize and transform the data in a modular way. Everything was orchestrated through Apache Airflow, which let us automate the entire workflow end-to-end — from ingestion to feature extraction. We parallelized parts of the process and optimized SQL logic, which led to a 40% improvement in throughput.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#4_ffdd8b09",
+      "has_header": true,
+      "word_count": 151
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # What kind of semantic search did you build using LangChain and Pinecone?\n\nA: We built a vector search pipeline tailored to genomic research papers and sequence annotations. I used LangChain to create embeddings and chain logic, and stored those in Pinecone for fast similarity-based retrieval. It supported both question-answering over domain-specific documents and similarity search, helping researchers find related sequences or studies efficiently.\n\n---\n\n# # Can you describe the deployment process using Docker and SageMaker?\n\nA: Definitely. We started by containerizing our models using Docker — bundling dependencies and model weights — and then deployed them as SageMaker endpoints. It made model versioning and scaling super manageable. We monitored everything using CloudWatch for logs and metrics, and used MLflow for tracking experiments and deployments.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#5_a4b0fd49",
+      "has_header": true,
+      "word_count": 128
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # Why did you migrate from batch to real-time ETL? What problems did that solve?\n\nA: Our batch ETL jobs were lagging in freshness — not ideal for decision-making. So, we moved to a Kafka + Spark streaming setup, which helped us process data as it arrived. That shift reduced latency by around 30%, enabling near real-time dashboards and alerts for operational teams.\n\n---\n\n# # How did you improve Snowflake performance with materialized views?\n\nA: We had complex analytical queries hitting large datasets. To optimize that, I designed materialized views that pre-aggregated common query patterns, like user summaries or event groupings. We also revised schema layouts to reduce joins. Altogether, query performance improved by roughly 40%.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#6_029a317d",
+      "has_header": true,
+      "word_count": 119
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # What kind of monitoring and alerting did you set up in production?\n\nA: We used CloudWatch extensively — custom metrics, alarms for failure thresholds, and real-time dashboards for service health. This helped us maintain 99.9% uptime by detecting and responding to issues early. I also integrated alerting into our CI/CD flow for rapid rollback if needed.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#7_03a65b27",
+      "has_header": true,
+      "word_count": 59
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # Tell me more about your IoT-based forecasting project — what did you build, and how is it useful?\n\nA: It was a real-time analytics pipeline simulating 10,000+ IoT sensor readings. I used Kafka for streaming, Airflow for orchestration, and S3 with lifecycle policies to manage cost — that alone reduced storage cost by 40%. We also trained time series models, including LLaMA 2, which outperformed ARIMA and provided more accurate forecasts. Everything was visualized through Looker dashboards, removing the need for manual reporting.",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#8_badb31b7",
+      "has_header": true,
+      "word_count": 85
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\nI stored raw and processed data in Amazon S3 buckets. Then I configured lifecycle policies to:\n• Automatically move older data to Glacier (cheaper storage)\n• Delete temporary/intermediate files after a certain period\nThis helped lower storage costs without compromising data access, especially since older raw data wasn’t queried often.\n• Schema enforcement: I used tools like Kafka Schema Registry (via Avro) to define a fixed format for sensor data. This avoided issues with malformed or inconsistent data entering the system.\n• Checksum verification: I added simple checksum validation at ingestion to verify that each message hadn’t been corrupted or tampered with. If the checksum didn’t match, the message was flagged and dropped/logged.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#9_29c1f1fe",
+      "has_header": false,
+      "word_count": 114
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # IntelliMeet looks interesting — how did you ensure privacy and decentralization?\n\nA: We designed it with federated learning so user data stayed local while models trained collaboratively. For privacy, we implemented end-to-end encryption across all video and audio streams. On top of that, we used real-time latency tuning (sub-200ms) and Transformer-based NLP for summarizing meetings — it made collaboration both private and smart.\n\n---\n\n💡 Other Likely Questions:\n\n# # Which tools or frameworks do you feel most comfortable with in production workflows?\n\nA: I’m most confident with Python and SQL, and regularly use tools like Airflow, Kafka, dbt, Docker, and AWS/GCP for production-grade workflows. I’ve also used Spark, Pinecone, and LangChain depending on the use case.\n\n---",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#10_087c9446",
+      "has_header": true,
+      "word_count": 120
+    }
+  },
+  {
+    "text": "[HEADER] # 🌟 Personal and Professional Goals\n\n# # What’s one project you’re especially proud of, and why?\n\nA: I’d say the real-time IoT forecasting project. It brought together multiple moving parts — streaming, predictive modeling, storage optimization, and automation. It felt really satisfying to see a full-stack data pipeline run smoothly, end-to-end, and make a real operational impact.\n\n---\n\n# # Have you had to learn any tools quickly? How did you approach that?\n\nA: Yes — quite a few! I had to pick up LangChain and Pinecone from scratch while building the semantic search pipeline, and even dove into R and Shiny for a gene co-expression app. I usually approach new tools by reverse-engineering examples, reading docs, and shipping small proofs-of-concept early to learn by doing.",
+    "metadata": {
+      "source": "goals_and_conversations.md",
+      "header": "# 🌟 Personal and Professional Goals",
+      "chunk_id": "goals_and_conversations.md_#11_0709a337",
+      "has_header": true,
+      "word_count": 121
+    }
+  },
+  {
+    "text": "[HEADER] ## 🧗‍♂️ Hobbies & Passions\n\n## 🧗‍♂️ Hobbies & Passions\n\nHere’s what keeps me energized and curious outside of work:\n\n- **🥾 Hiking & Outdoor Adventures** — Nothing clears my mind like a good hike.\n- **🎬 Marvel Fan for Life** — I’ve seen every Marvel movie, and I’d probably give my life for the MCU (Team Iron Man, always).\n- **🏏 Cricket Enthusiast** — Whether it's IPL or gully cricket, I'm all in.\n- **🚀 Space Exploration Buff** — Obsessed with rockets, Mars missions, and the future of interplanetary travel.\n- **🍳 Cooking Explorer** — I enjoy experimenting with recipes, especially fusion dishes.\n- **🕹️ Gaming & Reverse Engineering** — I love diving into game logic and breaking things down just to rebuild them better.\n- **🧑‍🤝‍🧑 Time with Friends** — Deep conversations, spontaneous trips, or chill evenings—friends keep me grounded.\n\n---",
+    "metadata": {
+      "source": "xPersonal_Interests_Cleaned.md",
+      "header": "## 🧗‍♂️ Hobbies & Passions",
+      "chunk_id": "xPersonal_Interests_Cleaned.md_#0_1dbed23b",
+      "has_header": true,
+      "word_count": 138
+    }
+  },
+  {
+    "text": "[HEADER] ## 🧗‍♂️ Hobbies & Passions\n\n# # 🌍 Cultural Openness\n\n- **Origin**: I’m proudly from **India**, a land of festivals, diversity, and flavors.\n- **Festivals**: I enjoy not only Indian festivals like **Diwali**, **Holi**, and **Ganesh Chaturthi**, but also love embracing global celebrations like **Christmas**, **Hallowean**, and **Thanksgiving**.\n- **Cultural Curiosity**: Whether it’s learning about rituals, history, or cuisine, I enjoy exploring and respecting all cultural backgrounds.\n\n---\n\n# # 🍽️ Favorite Foods\n\nIf you want to bond with me over food, here’s what hits my soul:\n\n- **🥘 Mutton Biryani from Hyderabad** — The gold standard of comfort food.\n- **🍬 Indian Milk Sweets** — Especially Rasgulla and Kaju Katli.\n- **🍔 Classic Burger** — The messier, the better.\n- **🍛 Puri with Aloo Sabzi** — A perfect nostalgic breakfast.\n- **🍮 Gulab Jamun** — Always room for dessert.\n\n---",
+    "metadata": {
+      "source": "xPersonal_Interests_Cleaned.md",
+      "header": "## 🧗‍♂️ Hobbies & Passions",
+      "chunk_id": "xPersonal_Interests_Cleaned.md_#1_3fb21b0c",
+      "has_header": true,
+      "word_count": 136
+    }
+  },
+  {
+    "text": "[HEADER] ## 🧗‍♂️ Hobbies & Passions\n\n# # 🎉 Fun Facts\n\n- I sometimes pause Marvel movies just to admire the visuals.\n- I've explored how video game stories are built and love experimenting with alternate paths.\n- I can tell if biryani is authentic based on the layering of the rice.\n- I once helped organize a cricket tournament on a week’s notice and we pulled it off with 12 teams!\n- I enjoy solving puzzles, even if they're frustrating sometimes.\n\n---\n\nThis side of me helps fuel the creativity, discipline, and joy I bring into my projects. Let’s connect over ideas _and_ biryani!",
+    "metadata": {
+      "source": "xPersonal_Interests_Cleaned.md",
+      "header": "## 🧗‍♂️ Hobbies & Passions",
+      "chunk_id": "xPersonal_Interests_Cleaned.md_#2_42616ef4",
+      "has_header": true,
+      "word_count": 99
+    }
+  }
+]

@@ -1,0 +1,12 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+node_modules/
+ui/node_modules/
+.ui/
+dist/
+build/
+.DS_Store
+*.log
+.env
