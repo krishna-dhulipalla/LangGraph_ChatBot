@@ -1,7 +1,7 @@
 
 # Krishna AI Agent — LangGraph RAG Chatbot (FastAPI + React)
 
-A production-ready, streaming chatbot that answers questions about **Krishna Vamsi Dhulipalla** and performs actions like **meeting scheduling**. The agent uses a **LangGraph-based RAG pipeline** (hybrid retrieval with FAISS + BM25), streams tokens via **Server-Sent Events (SSE)**, and provides a minimal **ChatGPT-style UI** in React/TypeScript.
+A production-ready, streaming chatbot that answers questions about **Krishna Vamsi Dhulipalla**. The agent uses a **LangGraph-based RAG pipeline** (hybrid retrieval with FAISS + BM25), streams tokens via **Server-Sent Events (SSE)**, and provides a minimal **ChatGPT-style UI** in React/TypeScript.
 
 > **Highlights**
 > - **LangGraph Agent:** modular nodes for rephrasing, retrieval, validation, answering, fallback, and memory update  
@@ -17,7 +17,6 @@ A production-ready, streaming chatbot that answers questions about **Krishna Vam
 
 - [Architecture & Flow](#architecture--flow)
 - [Directory Structure](#directory-structure)
-- [Key Files](#key-files)
 - [Features](#features)
 - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -27,11 +26,9 @@ A production-ready, streaming chatbot that answers questions about **Krishna Vam
   - [Docker](#docker)
 - [API](#api)
 - [Frontend (React UI)](#frontend-react-ui)
-- [Development Notes](#development-notes)
 - [Troubleshooting](#troubleshooting)
 - [Roadmap / Future Enhancements](#roadmap--future-enhancements)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
@@ -41,27 +38,14 @@ A production-ready, streaming chatbot that answers questions about **Krishna Vam
 flowchart TD
     A[User Query] --> B[Rephrase Node<br/>diverse sub-query]
     B --> C[Hybrid Retrieval<br/>FAISS + BM25]
-    C --> D[Validation Node<br/>in-scope? re-rank]
+    C --> D[LLM Model]
+    D --> H[Tools]
+    H --> D
     D -- In-scope --> E[Answer Node<br/>SSE streaming]
     D -- Out-of-scope --> F[Fallback Node<br/>fun model]
     E --> G[Async Memory Update]
     F --> G[Async Memory Update]
 ```
-
-**How requests move end-to-end**
-1. **UI** sends the user message to `/chat` (SSE).  
-2. **`agent.py`** (LangGraph) executes nodes in order:
-   - **Rephrase**: canonicalize/expand the question (1 diverse subquery).
-   - **Hybrid Retrieval**: BM25 + FAISS over your knowledge base.
-   - **Validation**: decide **in-scope** vs **out-of-scope**, and re-rank chunks.
-   - **Answer**:
-     - In-scope → answer grounded in top-k chunks.
-     - Out-of-scope → fallback model (e.g., Mixtral) with a friendly response.
-   - **Memory Update (async)**: persist useful facts for future turns.
-3. **`api.py`** streams tokens back via SSE to the UI where they render live.
-4. **Tools** (e.g., **calendar_setup.py**) can be triggered mid-graph to take actions.
-
----
 
 ## Directory Structure
 
@@ -92,24 +76,6 @@ repo-root/
 ```
 
 > Paths may differ slightly in your local repo; the core files above map to the code you’re using.
-
----
-
-## Key Files
-
-- **`backend/agent.py`** — Defines the LangGraph:
-  - **Nodes**: `rephraser_chain`, `hybrid_chain`, `validation_chain`, `answer_chain`, `fallback_chain`, `memory_chain` (names representative).
-  - **State**: per-turn state (query, rewrites, retrieved chunks, flags).
-  - **Branching**: routes based on `in_scope` decision.
-- **`backend/api.py`** — FastAPI app exposing:
-  - `GET /health` — health check
-  - `GET /chat?thread_id=...&message=...` — **SSE** stream of tokens
-  - Tool endpoints (e.g., `/resume/download`, scheduler helpers)
-- **`backend/calendar_setup.py`** — Google Calendar OAuth & service creation.
-- **`backend/vectorstoring.py`** — CLI-style utility for building FAISS index:
-  - Loads raw corpus → chunk → embed → write FAISS & metadata to `backend/data/`.
-- **`ui/src/useChat.tsx`** — Manages threads, sends requests, handles **SSE** tokens, incremental render.
-- **`ui/src/App.tsx`** — Renders chat bubbles, suggestions, typing animation, actions.
 
 ---
 
@@ -178,7 +144,9 @@ uvicorn backend.api:api --reload --host 0.0.0.0 --port 8080
 ```bash
 cd ui
 npm install         # or pnpm i / yarn
-npm run dev         # Vite/CRA dev server (check package.json)
+npm run build
+
+npm run dev         # For testing UI
 ```
 
 By default the UI expects the backend at `http://localhost:8080`. Adjust the base URL in `useChat.tsx` if needed.
@@ -246,20 +214,6 @@ If you host the UI separately, make sure it points to the container URL for `/ch
 
 ---
 
-## Development Notes
-
-- **LangGraph nodes** map your previous LangChain chains one-to-one:
-  - `rephraser_chain` → Rephrase Node
-  - `hybrid_chain` (BM25 + FAISS) → Retrieval Node
-  - `validation_chain` → In/Out of scope decision + re-ranking
-  - `answer_chain` → Final answer (GPT-4 class)
-  - `fallback_chain` → Friendly OOS model (e.g., Mixtral)
-  - `memory_chain` → Async write for future recall
-- **State passing**: thread-safe dict with `query`, `rewrites`, `chunks`, `flags`.
-- **Streaming**: keep assistant bubble visible during generation; show “thinking” only pre-token.
-
----
-
 ## Troubleshooting
 
 - **White/blank box during thinking**: the thinking row should render as a light inline element. If you see a big block, ensure it’s not styled as a full bubble (remove background/border/padding) and that no empty assistant message is pre-appended.
@@ -297,4 +251,4 @@ If you host the UI separately, make sure it points to the container URL for `/ch
 
 ## License
 
-Specify your license here (e.g., MIT). Add a `LICENSE` file in the repo root.
+Apache License © 2025 Krishna Vamsi Dhulipalla
