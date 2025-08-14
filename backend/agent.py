@@ -6,7 +6,8 @@ import numpy as np
 from collections import defaultdict
 from pathlib import Path
 from threading import Lock
-from typing import TypedDict, Annotated, Sequence, Dict, Optional, List, Literal, Type
+from typing import Annotated, Sequence, Dict, Optional, List, Type
+from typing_extensions import Literal, TypedDict
 from uuid import uuid4
 from datetime import datetime
 from dotenv import load_dotenv
@@ -25,6 +26,26 @@ from langgraph.graph.message import add_messages
 from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 from langgraph.checkpoint.memory import MemorySaver
+
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+
+# import function from api.py
+from .api import get_gcal_service
+
+GOOGLE_SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
+
+CREDS_DIR = Path("backend/credentials")
+CREDS_DIR.mkdir(parents=True, exist_ok=True)
+CLIENT_SECRET_FILE = CREDS_DIR / "credentials.json"  # download from Google Cloud
+TOKEN_FILE = CREDS_DIR / "token.json"
+
+if not CLIENT_SECRET_FILE.exists():
+        raise FileNotFoundError(
+            f"Missing OAuth client file: {CLIENT_SECRET_FILE}\n"
+            "Create an OAuth 2.0 Client ID (Desktop) and download JSON."
+        )
 
 api_key = os.environ.get("NVIDIA_API_KEY")
 if not api_key:
@@ -255,8 +276,191 @@ def memory_flush():
         memory_vs.save_local(MEM_FAISS_PATH)
         memory_dirty = False
         memory_write_count = 0
+        
+# def _get_gcal_service():
+#     creds = None
+#     if TOKEN_FILE.exists():
+#         creds = Credentials.from_authorized_user_file(str(TOKEN_FILE), GOOGLE_SCOPES)
+#     if not creds or not creds.valid:
+#         if creds and creds.expired and creds.refresh_token:
+#             creds.refresh(Request())  # type: ignore
+#         else:
+#             flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_SECRET_FILE), GOOGLE_SCOPES)
+#             # This opens a local browser once per server instance to authorize
+#             creds = flow.run_local_server(port=8765, prompt="consent")
+#         with open(TOKEN_FILE, "w") as f:
+#             f.write(creds.to_json())
+#     return build("calendar", "v3", credentials=creds)
 
-tools = [ retriever, memory_search]
+class Attendee(TypedDict):
+    email: str
+    optional: Optional[bool]
+    
+@tool("schedule_meeting")
+def schedule_meeting(
+    title: str,
+    start_rfc3339: str,   # e.g., "2025-08-13T10:00:00-05:00"
+    end_rfc3339: str,     # e.g., "2025-08-13T10:30:00-05:00"
+    attendees: Optional[List[Attendee]] = None, # [{"email":"a@x.com"}, ...]
+    description: Optional[str] = None,
+    location: Optional[str] = None,
+    calendar_id: str = "primary",
+    make_meet_link: bool = True,
+) -> str:
+    """
+    Create a Google Calendar event (and optional Google Meet link).
+    Returns a human-readable confirmation.
+    """
+    svc = get_gcal_service()
+
+    body = {
+        "summary": title,
+        "description": description or "",
+        "location": location or "",
+        "start": {"dateTime": start_rfc3339},
+        "end": {"dateTime": end_rfc3339},
+        "attendees": [{"email": a["email"], "optional": a.get("optional", False)} for a in (attendees or [])],
+    }
+
+    params = {}
+    if make_meet_link:
+        body["conferenceData"] = {
+            "createRequest": {"requestId": str(uuid4())}
+        }
+        params["conferenceDataVersion"] = 1
+
+    event = svc.events().insert(calendarId=calendar_id, body=body, **params).execute()
+    meet = (
+        (event.get("conferenceData") or {})
+        .get("entryPoints", [{}])[0]
+        .get("uri")
+        if make_meet_link
+        else None
+    )
+
+    attendee_str = ", ".join([a["email"] for a in (attendees or [])]) or "no attendees"
+    when = f'{event["start"]["dateTime"]} → {event["end"]["dateTime"]}'
+    return f"✅ Scheduled: {title}\n📅 When: {when}\n👥 With: {attendee_str}\n🔗 Meet: {meet or '—'}\n🗂️ Calendar: {calendar_id}\n🆔 Event ID: {event.get('id','')}"
+
+@tool("update_meeting")
+def update_meeting(
+    event_id: str,
+    calendar_id: str = "primary",
+    # RFC3339 fields are optional — only send the pieces you want to change
+    title: Optional[str] = None,
+    start_rfc3339: Optional[str] = None,
+    end_rfc3339: Optional[str] = None,
+    description: Optional[str] = None,
+    location: Optional[str] = None,
+    attendees: Optional[List[Attendee]] = None,  # full replacement if provided
+    add_meet_link: Optional[bool] = None,        # set True to add / False to remove
+    send_updates: str = "all",                   # "all" | "externalOnly" | "none"
+) -> str:
+    """
+    Partially update a Google Calendar event (PATCH). Only provided fields are changed.
+    Returns a human-readable confirmation with the updated times and Meet link if present.
+    """
+    svc = get_gcal_service()
+
+    body = {}
+    if title is not None:
+        body["summary"] = title
+    if description is not None:
+        body["description"] = description
+    if location is not None:
+        body["location"] = location
+    if start_rfc3339 is not None:
+        body.setdefault("start", {})["dateTime"] = start_rfc3339
+    if end_rfc3339 is not None:
+        body.setdefault("end", {})["dateTime"] = end_rfc3339
+    if attendees is not None:
+        body["attendees"] = [{"email": a["email"], "optional": a.get("optional", False)} for a in attendees]
+
+    params = {"calendarId": calendar_id, "eventId": event_id, "sendUpdates": send_updates}
+
+    # Handle Google Meet link toggling
+    if add_meet_link is True:
+        body["conferenceData"] = {"createRequest": {"requestId": str(uuid4())}}
+        params["conferenceDataVersion"] = 1
+    elif add_meet_link is False:
+        # Remove conference data
+        body["conferenceData"] = None
+        params["conferenceDataVersion"] = 1
+
+    ev = svc.events().patch(body=body, **params).execute()
+
+    meet_url = None
+    conf = ev.get("conferenceData") or {}
+    for ep in conf.get("entryPoints", []):
+        if ep.get("entryPointType") == "video":
+            meet_url = ep.get("uri")
+            break
+
+    when = f'{ev["start"].get("dateTime") or ev["start"].get("date")} → {ev["end"].get("dateTime") or ev["end"].get("date")}'
+    return f"✏️ Updated event {event_id}\n📅 When: {when}\n📝 Title: {ev.get('summary','')}\n🔗 Meet: {meet_url or '—'}"
+
+
+@tool("delete_meeting")
+def delete_meeting(
+    event_id: str,
+    calendar_id: str = "primary",
+    send_updates: str = "all",    # notify attendees
+) -> str:
+    """
+    Delete an event. Returns a short confirmation. If the event is part of a series,
+    this deletes the single instance unless you pass the series master id.
+    """
+    svc = get_gcal_service()
+    svc.events().delete(calendarId=calendar_id, eventId=event_id, sendUpdates=send_updates).execute()
+    return f"🗑️ Deleted event {event_id} from {calendar_id} (notifications: {send_updates})."
+
+@tool("find_meetings")
+def find_meetings(
+    q: Optional[str] = None,
+    time_min_rfc3339: Optional[str] = None,
+    time_max_rfc3339: Optional[str] = None,
+    max_results: int = 10,
+    calendar_id: str = "primary",
+) -> str:
+    """
+    List upcoming events, optionally filtered by time window or free-text q.
+    Returns a compact table with event_id, start, summary.
+    """
+    svc = get_gcal_service()
+    events = svc.events().list(
+        calendarId=calendar_id,
+        q=q,
+        timeMin=time_min_rfc3339,
+        timeMax=time_max_rfc3339,
+        maxResults=max_results,
+        singleEvents=True,
+        orderBy="startTime",
+    ).execute().get("items", [])
+
+    if not events:
+        return "No events."
+    rows = []
+    for ev in events:
+        start = (ev.get("start", {}).get("dateTime") or ev.get("start", {}).get("date") or "")
+        rows.append(f"{ev.get('id','')} | {start} | {ev.get('summary','')}")
+    return "event_id | start | title\n" + "\n".join(rows)
+
+@tool("download_resume")
+def download_resume() -> str:
+    """
+    Return a direct download link to Krishna's latest resume PDF.
+    """
+    BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8080")
+    url = f"{BASE_URL}/resume/download"
+    return (
+        f"Here is Krishna’s latest resume:\n\n"
+        f"- **PDF**: [Download the resume]({url})\n"
+        f"[download_url]={url}"
+    )
+
+
+# tools for the agent
+tools = [retriever, memory_search, schedule_meeting, update_meeting, delete_meeting, find_meetings, download_resume]
 
 model = ChatOpenAI(
     model="gpt-4o",              
@@ -300,6 +504,22 @@ When describing Krishna’s skills or projects:
 - Add **real-world applications** or **business/research impact**
 - Where relevant, include **links between different domains** (e.g., connecting bioinformatics work to data engineering expertise)
 
+**When asked to schedule a meeting:**
+- Call the `schedule_meeting` tool with these arguments:
+  - `title`: Short title for the meeting.
+  - `start_rfc3339`: Start time in RFC3339 format with timezone (e.g., "2025-08-13T10:00:00-05:00").
+  - `end_rfc3339`: End time in RFC3339 format with timezone.
+  - `attendees`: List of objects with `email` and optional `optional` boolean (e.g., [{{"email": "alex@company.com"}}]).
+  - `description` (optional): Meeting agenda or context.
+  - `location` (optional): Physical or virtual location if not using Meet.
+  - `calendar_id` (optional): Defaults to "primary".
+  - `make_meet_link`: Set to true if a Google Meet link should be generated.
+- Always convert natural language date/time (e.g., "tomorrow 3pm CT for 30 minutes") into precise RFC3339 format before calling.
+- Confirm details back to the user after scheduling, including date, time, attendees, and meeting link if available.
+
+If the user asks to edit or cancel a meeting, call update_meeting or delete_meeting. Prefer PATCH semantics (only change fields the user mentions). Always include event_id (ask for it or infer from the last created event in this thread).
+
+If the user asks for the resume or CV, call download_resume and return the link.
 ---
 **Krishna’s Background:**  
 {KRISHNA_BIO}

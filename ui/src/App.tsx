@@ -19,16 +19,20 @@ import type { ThreadMeta } from "./threads";
 
 const SUGGESTIONS = [
   {
-    title: "Overview of Krishna’s experience",
-    text: "Give me an overview of Krishna Vamsi Dhulipalla's work experience across different roles?",
+    title: "Quick intro to Krishna",
+    text: "Give me a 90-second intro to Krishna Vamsi Dhulipalla—recent work, top strengths, and impact.",
   },
   {
-    title: "Data science stack",
-    text: "What programming languages and tools does Krishna use for data science?",
+    title: "Get Krishna’s resume",
+    text: "Share Krishna’s latest resume and provide a download link.",
   },
   {
-    title: "Chatbot capabilities",
-    text: "Can this chatbot tell me what Krishna's chatbot architecture looks like and how it works?",
+    title: "What this agent can do",
+    text: "What tools and actions can you perform for me? Show examples and how to use them.",
+  },
+  {
+    title: "Schedule/modify a meeting",
+    text: "Schedule a 30-minute meeting with Krishna next week and show how I can reschedule or cancel.",
   },
 ];
 
@@ -44,13 +48,6 @@ const copyToClipboard = async (text: string) => {
 const getLastUserMessage = (msgs: { role: string; content: string }[]) =>
   [...msgs].reverse().find((m) => m.role === "user") || null;
 
-type Role = "user" | "assistant";
-type Message = { id: string; role: Role; content: string };
-
-function uid() {
-  return Math.random().toString(36).slice(2);
-}
-
 export default function App() {
   const {
     threads,
@@ -61,22 +58,29 @@ export default function App() {
     clearChat,
     deleteThread,
     send,
+    isStreaming,
+    hasFirstToken,
   } = useChat();
 
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
+  const prevThreadId = useRef<string | null>(null);
 
   // Scroll on message changes
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    const currentThreadId = active?.id ?? null;
 
-  const isStreaming = useMemo(() => {
-    const last = messages[messages.length - 1];
-    return last?.role === "assistant" && (last.content ?? "") === "";
-  }, [messages]);
+    // If the thread changed, scroll instantly to bottom
+    if (currentThreadId !== prevThreadId.current) {
+      prevThreadId.current = currentThreadId;
+      bottomRef.current?.scrollIntoView({ behavior: "auto" }); // instant scroll
+    } else {
+      // If same thread but messages changed, smooth scroll
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, active?.id]);
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -174,6 +178,44 @@ export default function App() {
           >
             Clear Chat
           </button>
+          {/* View Source on GitHub */}
+          <a
+            href="https://github.com/krishna-dhulipalla/LangGraph_ChatBot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 px-3 py-2 text-sm text-zinc-300"
+            title="View the source code on GitHub"
+          >
+            {/* GitHub Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-4 w-4"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 0C5.37 0 0 5.37 0 
+          12c0 5.3 3.438 9.8 8.205 
+          11.387.6.113.82-.262.82-.58 
+          0-.287-.01-1.045-.015-2.05-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 
+          1.205.085 1.84 1.238 1.84 1.238 
+          1.07 1.835 2.807 1.305 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.334-5.466-5.93 
+          0-1.31.468-2.38 1.235-3.22-.124-.303-.536-1.523.117-3.176 
+          0 0 1.008-.322 3.3 1.23a11.5 11.5 
+          0 013.003-.404c1.018.005 2.045.138 
+          3.003.404 2.29-1.552 3.297-1.23 
+          3.297-1.23.655 1.653.243 2.873.12 
+          3.176.77.84 1.233 1.91 1.233 3.22 
+          0 4.61-2.803 5.625-5.475 5.92.43.372.823 
+          1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 
+          0 .32.218.698.825.58C20.565 21.796 24 
+          17.297 24 12c0-6.63-5.37-12-12-12z"
+                clipRule="evenodd"
+              />
+            </svg>
+            View Source
+          </a>
         </div>
 
         {/* Thread list */}
@@ -250,6 +292,72 @@ export default function App() {
             ID: {active?.id ? active.id.slice(0, 8) : "…"}
           </div>
           <div className="ml-auto flex items-center gap-2">
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/krishnavamsidhulipalla/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl px-3 py-1.5 text-sm border border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
+              title="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-5 w-5 text-zinc-400 hover:text-zinc-200"
+              >
+                <path
+                  d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 
+        2.76 2.24 5 5 5h14c2.76 0 5-2.24 
+        5-5v-14c0-2.76-2.24-5-5-5zm-11 
+        19h-3v-10h3v10zm-1.5-11.27c-.97 
+        0-1.75-.79-1.75-1.76s.78-1.76 
+        1.75-1.76 1.75.79 
+        1.75 1.76-.78 1.76-1.75 
+        1.76zm13.5 11.27h-3v-5.5c0-1.31-.02-3-1.83-3-1.83 
+        0-2.12 1.43-2.12 2.9v5.6h-3v-10h2.88v1.36h.04c.4-.75 
+        1.38-1.54 2.85-1.54 3.05 0 3.61 
+        2.01 3.61 4.63v5.55z"
+                />
+              </svg>
+            </a>
+
+            {/* GitHub */}
+            <a
+              href="https://github.com/krishna-dhulipalla"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl px-3 py-1.5 text-sm border border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
+              title="GitHub"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-5 w-5 text-zinc-400 hover:text-zinc-200"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12 0C5.37 0 0 5.37 0 
+          12c0 5.3 3.438 9.8 8.205 
+          11.387.6.113.82-.262.82-.58 
+          0-.287-.01-1.045-.015-2.05-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 
+          1.205.085 1.84 1.238 1.84 1.238 
+          1.07 1.835 2.807 1.305 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.334-5.466-5.93 
+          0-1.31.468-2.38 1.235-3.22-.124-.303-.536-1.523.117-3.176 
+          0 0 1.008-.322 3.3 1.23a11.5 11.5 
+          0 013.003-.404c1.018.005 2.045.138 
+          3.003.404 2.29-1.552 3.297-1.23 
+          3.297-1.23.655 1.653.243 2.873.12 
+          3.176.77.84 1.233 1.91 1.233 3.22 
+          0 4.61-2.803 5.625-5.475 5.92.43.372.823 
+          1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 
+          0 .32.218.698.825.58C20.565 21.796 24 
+          17.297 24 12c0-6.63-5.37-12-12-12z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
             <button
               onClick={handleShare}
               className="rounded-xl px-3 py-1.5 text-sm border border-zinc-800 bg-zinc-900 hover:bg-zinc-800"
@@ -272,15 +380,13 @@ export default function App() {
           {messages.length === 0 ? (
             <EmptyState onSelect={selectSuggestion} onSend={sendSuggestion} />
           ) : (
-            <div className="mx-auto max-w-3xl space-y-3">
+            <div className="mx-auto max-w-3xl space-y-3 relative">
               {messages.map((m, idx) => {
                 const isAssistant = m.role === "assistant";
                 const emptyAssistant =
                   isAssistant && (!m.content || m.content.trim() === "");
                 if (emptyAssistant) return null; // hide blank bubble
-                const key =
-                  (m as Message).id ??
-                  `m-${idx}-${m.role}-${(m.content || "").length}-${uid()}`;
+                const key = m.id ?? `m-${idx}`; // NEW stable key
                 return (
                   <div key={key} className={isAssistant ? "group" : undefined}>
                     {/* bubble row */}
@@ -298,71 +404,67 @@ export default function App() {
                       >
                         {isAssistant ? (
                           <>
-                            {isStreaming ? (
-                              <TypingDots />
-                            ) : (
-                              <ReactMarkdown
-                                remarkPlugins={[remarkGfm]}
-                                components={{
-                                  a: (props) => (
-                                    <a
-                                      {...props}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="underline text-blue-400 hover:text-blue-600"
-                                    />
-                                  ),
-                                  p: (props) => (
-                                    <p className="mb-2 last:mb-0" {...props} />
-                                  ),
-                                  ul: (props) => (
-                                    <ul
-                                      className="list-disc list-inside mb-2 last:mb-0"
-                                      {...props}
-                                    />
-                                  ),
-                                  ol: (props) => (
-                                    <ol
-                                      className="list-decimal list-inside mb-2 last:mb-0"
-                                      {...props}
-                                    />
-                                  ),
-                                  li: (props) => (
-                                    <li className="ml-4 mb-1" {...props} />
-                                  ),
-                                  code: (
-                                    props: React.HTMLAttributes<HTMLElement> & {
-                                      inline?: boolean;
-                                    }
-                                  ) => {
-                                    // react-markdown v8+ passes 'node', 'inline', etc. in props, but types may not include 'inline'
-                                    const {
-                                      className,
-                                      children,
-                                      inline,
-                                      ...rest
-                                    } = props;
-                                    const isInline = inline;
-                                    return isInline ? (
-                                      <code
-                                        className="bg-zinc-800/80 px-1 py-0.5 rounded"
-                                        {...rest}
-                                      >
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm]}
+                              components={{
+                                a: (props) => (
+                                  <a
+                                    {...props}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="underline text-blue-400 hover:text-blue-600"
+                                  />
+                                ),
+                                p: (props) => (
+                                  <p className="mb-2 last:mb-0" {...props} />
+                                ),
+                                ul: (props) => (
+                                  <ul
+                                    className="list-disc list-inside mb-2 last:mb-0"
+                                    {...props}
+                                  />
+                                ),
+                                ol: (props) => (
+                                  <ol
+                                    className="list-decimal list-inside mb-2 last:mb-0"
+                                    {...props}
+                                  />
+                                ),
+                                li: (props) => (
+                                  <li className="ml-4 mb-1" {...props} />
+                                ),
+                                code: (
+                                  props: React.HTMLAttributes<HTMLElement> & {
+                                    inline?: boolean;
+                                  }
+                                ) => {
+                                  // react-markdown v8+ passes 'node', 'inline', etc. in props, but types may not include 'inline'
+                                  const {
+                                    className,
+                                    children,
+                                    inline,
+                                    ...rest
+                                  } = props;
+                                  const isInline = inline;
+                                  return isInline ? (
+                                    <code
+                                      className="bg-zinc-800/80 px-1 py-0.5 rounded"
+                                      {...rest}
+                                    >
+                                      {children}
+                                    </code>
+                                  ) : (
+                                    <pre className="overflow-x-auto rounded-xl border border-zinc-800/60 bg-zinc-950/80 p-3 mb-2">
+                                      <code className={className} {...rest}>
                                         {children}
                                       </code>
-                                    ) : (
-                                      <pre className="overflow-x-auto rounded-xl border border-zinc-800/60 bg-zinc-950/80 p-3 mb-2">
-                                        <code className={className} {...rest}>
-                                          {children}
-                                        </code>
-                                      </pre>
-                                    );
-                                  },
-                                }}
-                              >
-                                {m.content}
-                              </ReactMarkdown>
-                            )}
+                                    </pre>
+                                  );
+                                },
+                              }}
+                            >
+                              {m.content}
+                            </ReactMarkdown>
                           </>
                         ) : (
                           m.content
@@ -395,6 +497,12 @@ export default function App() {
                   </div>
                 );
               })}
+              {/* Thinking indicator (only BEFORE first token) */}
+              {isStreaming && !hasFirstToken && (
+                <div className="pointer-events-none relative top-3 left-0 bottom-0 translate-y-2 z-20">
+                  <TypingDots />
+                </div>
+              )}
               <div ref={bottomRef} />
             </div>
           )}

@@ -1,5 +1,9 @@
 // src/messages.ts
-export type ChatMessage = { role: "user" | "assistant"; content: string };
+export type ChatMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+};
 
 const ensureSessionId = (): string => {
   let sid = sessionStorage.getItem("session_id");

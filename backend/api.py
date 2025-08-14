@@ -4,12 +4,16 @@ from __future__ import annotations
 from fastapi import FastAPI, Request, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import RedirectResponse, PlainTextResponse
+from fastapi.responses import FileResponse
 from sse_starlette.sse import EventSourceResponse
 from typing import Optional
 from uuid import uuid4
 from pathlib import Path
-import json
+import json, secrets, urllib.parse, os
+from google_auth_oauthlib.flow import Flow
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
 
 # --- import your compiled LangGraph app ---
 # agent.py exports: app = graph.compile(...)
@@ -17,6 +21,13 @@ import json
 from .agent import app as lg_app
 
 api = FastAPI(title="LangGraph Chat API")
+
+SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
+CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8000")
+REDIRECT_URI = f"{BASE_URL}/oauth/google/callback"
+TOKEN_FILE = Path("/data/google_token.json")
 
 # CORS (handy during dev; tighten in prod)
 api.add_middleware(
@@ -26,6 +37,59 @@ api.add_middleware(
     allow_headers=["*"],
     allow_credentials=True,
 )
+
+SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
+CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+BASE_URL = os.getenv("PUBLIC_BASE_URL", "http://localhost:8000")
+REDIRECT_URI = f"{BASE_URL}/oauth/google/callback"
+TOKEN_FILE = Path("/data/google_token.json")  # persistent on HF Spaces
+
+def _client_config():
+    return {
+        "web": {
+            "client_id": CLIENT_ID,
+            "project_id": "chatk",  # optional
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "client_secret": CLIENT_SECRET,
+            "redirect_uris": [REDIRECT_URI],
+        }
+    }
+
+@api.get("/oauth/google/start")
+def oauth_start():
+    # optional CSRF protection
+    state = secrets.token_urlsafe(16)
+    flow = Flow.from_client_config(_client_config(), scopes=SCOPES, redirect_uri=REDIRECT_URI)
+    auth_url, _ = flow.authorization_url(
+        access_type="offline",        # get refresh token
+        include_granted_scopes="true",
+        prompt="consent"              # ensures refresh token on repeated login
+    )
+    # You can store `state` server-side if you validate it later
+    return RedirectResponse(url=auth_url)
+
+@api.get("/oauth/google/callback")
+def oauth_callback(request: Request):
+    # Exchange code for tokens
+    full_url = str(request.url)  # includes ?code=...
+    flow = Flow.from_client_config(_client_config(), scopes=SCOPES, redirect_uri=REDIRECT_URI)
+    flow.fetch_token(authorization_response=full_url)
+    creds = flow.credentials
+    TOKEN_FILE.parent.mkdir(parents=True, exist_ok=True)
+    TOKEN_FILE.write_text(creds.to_json())
+    return PlainTextResponse("Google Calendar connected. You can close this tab.")
+
+def get_gcal_service():
+    if TOKEN_FILE.exists():
+        creds = Credentials.from_authorized_user_file(str(TOKEN_FILE), SCOPES)
+    else:
+        # Not authorized yet
+        raise RuntimeError(
+            f"Google not connected. Visit {BASE_URL}/oauth/google/start to connect."
+        )
+    return build("calendar", "v3", credentials=creds)
 
 @api.get("/health")
 def health():
@@ -128,6 +192,19 @@ async def _event_stream_with_config(thread_id: str, message: str, request: Reque
 # repo_root = <project>/  ; this file is <project>/backend/api.py
 REPO_ROOT = Path(__file__).resolve().parents[1]
 UI_DIST = REPO_ROOT / "ui" / "dist"
+
+RESUME_PATH = REPO_ROOT / "backend" / "assets" / "KrishnaVamsiDhulipalla.pdf"
+
+@api.get("/resume/download")
+def resume_download():
+    if not RESUME_PATH.is_file():
+        return PlainTextResponse("Resume not found", status_code=404)
+    # Same-origin download; content-disposition prompts save/open dialog
+    return FileResponse(
+        path=str(RESUME_PATH),
+        media_type="application/pdf",
+        filename="Krishna_Vamsi_Dhulipalla_Resume.pdf",
+    )
 
 if UI_DIST.is_dir():
     api.mount("/", StaticFiles(directory=str(UI_DIST), html=True), name="ui")

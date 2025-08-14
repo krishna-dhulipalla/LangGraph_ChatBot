@@ -18,6 +18,9 @@ export function useChat() {
   const [messagesByThread, setMessagesByThread] = useState<
     Record<string, ChatMessage[]>
   >({});
+  const [isStreaming, setIsStreaming] = useState(false);
+  const [hasFirstToken, setHasFirstToken] = useState(false); // NEW
+  const firstTokenSeenRef = useRef(false);
   const esRef = useRef<EventSource | null>(null);
 
   // Load messages whenever the active thread changes (covers initial mount too)
@@ -120,7 +123,14 @@ export function useChat() {
           next = [...arr.slice(0, -1), merged];
         } else {
           // 👈 important: literal role type to avoid widening to string
-          next = [...arr, { role: "assistant" as const, content: chunk }];
+          next = [
+            ...arr,
+            {
+              id: crypto.randomUUID(),
+              role: "assistant" as const,
+              content: chunk,
+            },
+          ];
         }
 
         persist(tid, next); // ChatMessage[]
@@ -130,13 +140,27 @@ export function useChat() {
     [persist]
   );
 
+  // const makeMsg = (
+  //   role: "user" | "assistant",
+  //   content: string
+  // ): ChatMessage => ({
+  //   id: crypto.randomUUID(),
+  //   role,
+  //   content,
+  // });
+
   const send = useCallback(
     (text: string) => {
       if (!active?.id) return;
       const thread_id = active.id;
 
       // optimistic UI
-      appendMsg(thread_id, { role: "user", content: text });
+      appendMsg(thread_id, {
+        id: crypto.randomUUID(),
+        role: "user",
+        content: text,
+      });
+      // appendMsg(thread_id, makeMsg("assistant", ""));
 
       // bump thread meta (derive title from first user msg if needed)
       const title =
@@ -163,14 +187,27 @@ export function useChat() {
 
       const es = new EventSource(url.toString());
       esRef.current = es;
+      setIsStreaming(true);
+      setHasFirstToken(false);
+      firstTokenSeenRef.current = false;
 
       es.addEventListener("token", (ev: MessageEvent) => {
-        mutateLastAssistant(thread_id, (ev as MessageEvent<string>).data || "");
+        const data = (ev as MessageEvent<string>).data ?? "";
+        const hasVisibleChars = data.trim().length > 0; // 👈 NEW
+
+        // flip the flag only when the first *visible* token arrives
+        if (!firstTokenSeenRef.current && hasVisibleChars) {
+          firstTokenSeenRef.current = true;
+          setHasFirstToken(true);
+        }
+
+        mutateLastAssistant(thread_id, data);
       });
 
       const close = () => {
         es.close();
         esRef.current = null;
+        setIsStreaming(false);
       };
 
       es.addEventListener("done", close);
@@ -188,5 +225,7 @@ export function useChat() {
     clearChat,
     deleteThread,
     send,
+    isStreaming,
+    hasFirstToken,
   };
 }
