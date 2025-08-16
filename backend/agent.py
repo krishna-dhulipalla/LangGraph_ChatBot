@@ -487,7 +487,7 @@ def download_resume() -> str:
 
 
 # tools for the agent
-tools = [retriever, memory_search, schedule_meeting, update_meeting, delete_meeting, find_meetings, download_resume]
+tools = [retriever, memory_search, schedule_meeting, update_meeting, delete_meeting, find_meetings, download_resume, parse_datetime]
 
 model = ChatOpenAI(
     model="gpt-4o",              
