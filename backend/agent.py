@@ -34,6 +34,10 @@ from googleapiclient.discovery import build
 # import function from api.py
 from .api import get_gcal_service
 
+from dateutil import parser as date_parser
+from datetime import datetime, timedelta
+import pytz
+
 GOOGLE_SCOPES = ["https://www.googleapis.com/auth/calendar.events"]
 
 CREDS_DIR = Path("backend/credentials")
@@ -445,6 +449,29 @@ def find_meetings(
         rows.append(f"{ev.get('id','')} | {start} | {ev.get('summary','')}")
     return "event_id | start | title\n" + "\n".join(rows)
 
+@tool("parse_datetime")
+def parse_datetime(natural_text: str, default_duration_minutes: int = 30, tz: str = "America/New_York") -> dict:
+    """
+    Parse natural language date/time (e.g., 'next Monday 3pm', 'today 10am') into
+    RFC3339 start and end timestamps. Falls back to current year if year missing.
+    """
+    try:
+        now = datetime.now(pytz.timezone(tz))
+        dt = date_parser.parse(natural_text, default=now)
+        # if year not provided, enforce current year
+        if dt.year < now.year:
+            dt = dt.replace(year=now.year)
+
+        start = dt.astimezone(pytz.timezone(tz))
+        end = start + timedelta(minutes=default_duration_minutes)
+
+        return {
+            "start_rfc3339": start.isoformat(),
+            "end_rfc3339": end.isoformat()
+        }
+    except Exception as e:
+        return {"error": f"Failed to parse datetime: {str(e)}"}
+
 @tool("download_resume")
 def download_resume() -> str:
     """
@@ -474,7 +501,7 @@ class AgentState(TypedDict):
     
 system_prompt = SystemMessage(
     content=f"""
-ou are Krishna's personal AI assistant — answer **clearly, thoroughly, and professionally** with rich detail and well-structured explanations.
+You are Krishna's personal AI assistant — answer **clearly, thoroughly, and professionally** with rich detail and well-structured explanations.
 
 ### When the user asks about Krishna:
 - Use the `retriever` tool to fetch facts (no fabrication) and memory search tool to query long-term memory for past context.
@@ -514,12 +541,12 @@ When describing Krishna’s skills or projects:
   - `location` (optional): Physical or virtual location if not using Meet.
   - `calendar_id` (optional): Defaults to "primary".
   - `make_meet_link`: Set to true if a Google Meet link should be generated.
-- Always convert natural language date/time (e.g., "tomorrow 3pm CT for 30 minutes") into precise RFC3339 format before calling.
+- Use parse_datetime tool to convert natural language date/time (e.g., "tomorrow 3pm CT for 30 minutes") into precise RFC3339 format before calling.
 - Confirm details back to the user after scheduling, including date, time, attendees, and meeting link if available.
 
 If the user asks to edit or cancel a meeting, call update_meeting or delete_meeting. Prefer PATCH semantics (only change fields the user mentions). Always include event_id (ask for it or infer from the last created event in this thread).
 
-If the user asks for the resume or CV, call download_resume and return the link.
+If the user asks for the resume or CV, call download_resume tool and return the link.
 ---
 **Krishna’s Background:**  
 {KRISHNA_BIO}

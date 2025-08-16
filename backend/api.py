@@ -91,9 +91,17 @@ def get_gcal_service():
         )
     return build("calendar", "v3", credentials=creds)
 
-@api.get("/health")
-def health():
-    return {"ok": True}
+@api.get("/debug/routes")
+def list_routes():
+    return {"routes": sorted([getattr(r, "path", str(r)) for r in api.router.routes])}
+
+@api.get("/api/debug/oauth")
+def debug_oauth():
+    return {
+        "base_url_env": BASE_URL_RAW,
+        "base_url_effective": BASE_URL,
+        "redirect_uri_built": REDIRECT_URI,
+    }
 
 async def _event_stream(thread_id: str, message: str, request: Request):
     """
