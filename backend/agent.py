@@ -484,10 +484,80 @@ def download_resume() -> str:
         f"- **PDF**: [Download the resume]({url})\n"
         f"[download_url]={url}"
     )
+@tool("get_portfolio_links")
+def get_portfolio_links() -> str:
+    """
+    Return verified links recruiters ask for most: site, chatbot demo, GitHub, LinkedIn,
+    key repos and publications. Output is Markdown.
+    """
+    return (
+        "## 🔗 Portfolio & Profiles\n"
+        "- Website: https://krishna-dhulipalla.github.io/\n"
+        "- Personal Chatbot (demo): https://huggingface.co/spaces/krishnadhulipalla/ChatBot\n"
+        "- GitHub: https://github.com/krishna-dhulipalla\n"
+        "- LinkedIn: https://www.linkedin.com/in/krishnavamsidhulipalla\n"
+        "\n"
+        "## 📦 Highlight Repos\n"
+        "- LangGraph ChatBot: https://github.com/krishna-dhulipalla/LangGraph_ChatBot"
+        "- Android World agent: https://github.com/krishna-dhulipalla/android_world\n"
+        "- Gene Co-expression tootl: https://github.com/krishna-dhulipalla/gene_co-expression_tool"
+        "- ProxyTuNER (cross-domain NER): https://github.com/krishna-creator/ProxytuNER\n"
+        "- IntelliMeet (decentralized video conf): https://github.com/krishna-creator/SE-Project---IntelliMeet\n"
+        "- More repos: https://github.com/krishna-dhulipalla?tab=repositories"
+        "\n"
+        "## 📚 Publications\n"
+        "- BIBM 2024 paper: https://www.researchgate.net/publication/387924249_Leveraging_Machine_Learning_for_Predicting_Circadian_Transcription_in_mRNAs_and_lncRNAs\n"
+        "- ML in Computational Biology 2025 (bioRxiv): https://www.biorxiv.org/content/10.1101/2025.07.14.664780v1\n"
+    )
 
+@tool("get_career_timeline")
+def get_career_timeline() -> str:
+    """
+    Return a concise, recruiter-friendly career timeline (reverse-chronological).
+    Output is Markdown so the chat can render it directly or paste into emails.
+    """
+    return (
+        "## 🧭 Career Timeline (reverse-chronological)\n"
+        "### Experience\n"
+        "- **ML Research Engineer – Cloud Systems LLC** · Jul 2024 – Present · Remote\n"
+        "  - Data pipelines (batch & real-time), complex SQL, automated ETL.\n"
+        "- **ML Research Engineer – Virginia Tech** · Sep 2024 – Jul 2024 · Blacksburg, VA\n"
+        "  - LLM pipelines (DNABERT, HyenaDNA), LoRA/soft prompting, 94%+ accuracy; Airflow automation.\n"
+        "- **Research Assistant – Virginia Tech** · Jun 2023 – May 2024 · Blacksburg, VA\n"
+        "  - Genomic ETL on Airflow/AWS; CI/CD for retraining; runtime optimizations.\n"
+        "- **Data Engineer – UJR Technologies** · Jul 2021 – Dec 2022 · Hyderabad, India\n"
+        "  - Kafka/Spark streaming migration; Snowflake perf; AWS ECS microservices.\n"
+        "\n"
+        "### Education\n"
+        "- **M.S., Computer Science – Virginia Tech** · Jan 2023 – Dec 2024 (GPA 3.95/4)\n"
+        "- **B.E., Computer Science – Anna University** · Jul 2018 – May 2022 (CGPA 8.24/10)\n"
+        "\n"
+        "### Selected Projects\n"
+        "- **LLM-Based Android Agent for UI Automation** – 80%+ step accuracy; +25% goal-success with memory/reflection.\n"
+        "- **ProxyTuNER** – +8% F1 via proxy-tuning and expert logit ensembling; 70% compute reduction.\n"
+        "- **IntelliMeet** – decentralized video; <200ms latency; on-device ML for attention; STT + summarization.\n"
+    )
+    
+@tool("analyze_job_description")
+def analyze_job_description(job_text: str) -> str:
+    """
+    Compare a given job description (text) against Krishna's skills & experience.
+    Returns match highlights and potential gaps.
+    """
+    # Simple version: use retriever to find relevant chunks from profile
+    hits = retriever(job_text)[:5]
+    analysis = "\n".join(hits)
+    return (
+        "## 📋 Job Fit Analysis\n"
+        f"**Job Description Snippet:**\n{job_text[:500]}...\n\n"
+        "### ✅ Matched Experience:\n"
+        f"{analysis}\n\n"
+        "### ⚠️ Potential Gaps:\n"
+        "- (The model will expand here based on skills not found)"
+    )
 
 # tools for the agent
-tools = [retriever, memory_search, schedule_meeting, update_meeting, delete_meeting, find_meetings, download_resume]
+tools = [retriever, memory_search, schedule_meeting, update_meeting, delete_meeting, find_meetings, download_resume, parse_datetime, get_portfolio_links, get_career_timeline, analyze_job_description]
 
 model = ChatOpenAI(
     model="gpt-4o",              
@@ -547,6 +617,9 @@ When describing Krishna’s skills or projects:
 If the user asks to edit or cancel a meeting, call update_meeting or delete_meeting. Prefer PATCH semantics (only change fields the user mentions). Always include event_id (ask for it or infer from the last created event in this thread).
 
 If the user asks for the resume or CV, call download_resume tool and return the link.
+If recruiter asks for links, profiles, or demos → call `get_portfolio_links`.
+If they ask “quick background”, “timeline”, or “what have you done recently?” → call `get_career_timeline`.
+If they ask about a job description → call `analyze_job_description` with the text.
 ---
 **Krishna’s Background:**  
 {KRISHNA_BIO}
