@@ -36,15 +36,28 @@ A production-ready, streaming chatbot that answers questions about **Krishna Vam
 
 ```mermaid
 flowchart TD
-    A[User Query] --> B[Rephrase Node<br/>diverse sub-query]
-    B --> C[Hybrid Retrieval<br/>FAISS + BM25]
-    C --> D[LLM Model]
-    D --> H[Tools]
-    H --> D
-    D -- In-scope --> E[Answer Node<br/>SSE streaming]
-    D -- Out-of-scope --> F[Fallback Node<br/>fun model]
-    E --> G[Async Memory Update]
-    F --> G[Async Memory Update]
+    START([Start: New User Message]) --> A[Agent Node<br/>LLM Call with System Prompt + Context]
+
+    %% Conditional edges
+    A -->|Has Tool Calls| B[Tools Node<br/>Run External Tools]
+    A -->|No Tool Calls| C[Memory Write Node<br/>Summarize Q&A → Save to FAISS]
+
+    %% Loop back when tools are used
+    B --> A
+
+    %% End path
+    C --> END([Turn Complete])
+
+    %% Restart on next user input
+    END --> START
+
+    %% Expand what "Tools" includes
+    B --> D{Available Tools}
+    D --> D1[Retriever<br/>FAISS + BM25 + RRF + Re-rank + MMR]
+    D --> D2[Memory Search<br/>Long-term FAISS memory]
+    D --> D3[Google Calendar<br/>Schedule, Update, Delete, Find]
+    D --> D4[Download Resume]
+
 ```
 
 ## Directory Structure
