@@ -57,6 +57,7 @@ flowchart TD
     D --> D2[Memory Search<br/>Long-term FAISS memory]
     D --> D3[Google Calendar<br/>Schedule, Update, Delete, Find]
     D --> D4[Download Resume]
+    D --> D5[Job Description Analyzer]
 
 ```
 
