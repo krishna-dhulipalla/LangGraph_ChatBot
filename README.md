@@ -149,19 +149,6 @@ Typical production setup:
 - **Secrets & Config**
   - All secrets via env vars (LLM keys, Google credentials, etc.)
   - No credentials are hardcoded into the repo
-
-Suggested CI/CD pipeline (not committed to this repo, but how I’d run it in practice):
-
-1. On PR:
-   - Run Python linting / type-checking / tests (e.g., `ruff`, `mypy`, `pytest`)
-   - Run frontend build (`npm run build`) to catch UI issues
-2. On merge to `main`:
-   - Build and push the Docker image
-   - Roll out to staging, run smoke tests against `/health` and a small `/chat` canary
-   - Promote to production once basic checks pass
-
-This gives recruiters a realistic view of how the service would live in a production environment.
-
 ---
 
 ## Directory Structure
